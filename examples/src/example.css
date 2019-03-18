@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,700');
+
+body,
+textarea {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 1rem;
+}
