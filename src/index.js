@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState, forwardRef } from 'react'
+import React, { useEffect, useMemo, useRef, useState, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import escapeRegExp from 'escape-string-regexp'
@@ -39,7 +39,17 @@ const Suggestible = forwardRef(({
   ...props
 }, ref) => {
   const container = useRef()
-  const textarea = ref || useRef()
+  const textarea = useRef()
+
+  useEffect(() => {
+    if (ref) {
+      if (typeof(ref) === 'function') {
+        ref(textarea.current)
+      } else {
+        ref.current = textarea.current
+      }
+    }
+  }, [ref, textarea.current])
 
   const [isFocused, setFocused] = useState(false)
   const [isCancelled, setCancelled] = useState(false)
