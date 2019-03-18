@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from 'react'
+import React, { useMemo, useRef, useState, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import escapeRegExp from 'escape-string-regexp'
@@ -22,7 +22,7 @@ const getLineHeight = element => {
   return isNaN(lineHeight) ? parseInt(styles.fontSize, 10) : lineHeight
 }
 
-const Suggestible = ({
+const Suggestible = forwardRef(({
   component: Component,
   className,
   maxOptions,
@@ -37,9 +37,9 @@ const Suggestible = ({
   onInput,
   onKeyDown,
   ...props
-}) => {
+}, ref) => {
   const container = useRef()
-  const textarea = useRef()
+  const textarea = ref || useRef()
 
   const [isFocused, setFocused] = useState(false)
   const [isCancelled, setCancelled] = useState(false)
@@ -229,7 +229,7 @@ const Suggestible = ({
       )}
     </div>
   )
-}
+})
 
 Suggestible.propTypes = {
   className: PropTypes.string,
