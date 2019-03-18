@@ -1,6 +1,6 @@
 {
   "name": "react-suggestible",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "React editor component with tag auto-completion",
   "keywords": [
     "react",
@@ -11,10 +11,11 @@
   ],
   "main": "dist/index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "babel src -d dist --copy-files",
     "start": "webpack-dev-server --mode development",
     "eslint": "eslint -c .eslintrc.json src",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "yarn build"
   },
   "author": "Matt Powell <matt.powell@optimalworkshop.com>",
   "repository": {

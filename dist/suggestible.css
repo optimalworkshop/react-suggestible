@@ -1,0 +1,25 @@
+.suggestible {
+  position: relative;
+}
+
+.suggestible__textarea {
+  font: inherit;
+  display: block;
+}
+
+.suggestible__menu {
+  position: fixed;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  margin: 0.25em -0.5em;
+  box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.25);
+}
+
+.suggestible__menu-item {
+  padding: 0.25em 0.5em;
+}
+
+.suggestible__menu-item[aria-selected] {
+  background: Highlight;
+  color: HighlightText;
+}
