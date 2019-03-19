@@ -114,8 +114,10 @@ const Suggestible = forwardRef(({
         case KEYS.ENTER:
         case KEYS.RIGHT:
         case KEYS.TAB:
-          e.preventDefault()
-          confirmSelection()
+          if (menuOptions[selectedIndex]) {
+            e.preventDefault()
+            confirmSelection()
+          }
           break
         case KEYS.ESC:
           e.preventDefault()
@@ -228,7 +230,7 @@ const Suggestible = forwardRef(({
         onKeyDown={keyDown}
         {...props}
       />
-      {isOpen && (
+      {isOpen && (menuOptions.length > 0) && (
         <Menu
           options={menuOptions}
           prefix={prefix}

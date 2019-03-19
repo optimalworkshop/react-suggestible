@@ -69,7 +69,16 @@ var Suggestible = (0, _react.forwardRef)(function (_ref, ref) {
       props = _objectWithoutProperties(_ref, ["component", "className", "maxOptions", "minPrefix", "options", "tabIndex", "trigger", "value", "onBlur", "onChange", "onFocus", "onInput", "onKeyDown"]);
 
   var container = (0, _react.useRef)();
-  var textarea = ref || (0, _react.useRef)();
+  var textarea = (0, _react.useRef)();
+  (0, _react.useEffect)(function () {
+    if (ref) {
+      if (typeof ref === 'function') {
+        ref(textarea.current);
+      } else {
+        ref.current = textarea.current;
+      }
+    }
+  }, [ref, textarea.current]);
 
   var _useState = (0, _react.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -152,8 +161,11 @@ var Suggestible = (0, _react.forwardRef)(function (_ref, ref) {
         case KEYS.ENTER:
         case KEYS.RIGHT:
         case KEYS.TAB:
-          e.preventDefault();
-          confirmSelection();
+          if (menuOptions[selectedIndex]) {
+            e.preventDefault();
+            confirmSelection();
+          }
+
           break;
 
         case KEYS.ESC:
@@ -256,7 +268,7 @@ var Suggestible = (0, _react.forwardRef)(function (_ref, ref) {
     onChange: changed,
     onInput: input,
     onKeyDown: keyDown
-  }, props)), isOpen && _react.default.createElement(_menu.default, _extends({
+  }, props)), isOpen && menuOptions.length > 0 && _react.default.createElement(_menu.default, _extends({
     options: menuOptions,
     prefix: prefix,
     selectedIndex: selectedIndex,
