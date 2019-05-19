@@ -239,8 +239,8 @@ var Suggestible = (0, _react.forwardRef)(function (_ref, ref) {
     var el = textarea.current;
     var value = el.value,
         start = el.selectionStart;
-    el.value = value.substring(0, start - prefix.length) + text + value.substring(start + prefix.length);
-    el.selectionStart = el.selectionEnd = start + text.length;
+    el.value = value.substring(0, start - prefix.length) + text + value.substring(start);
+    el.selectionStart = el.selectionEnd = start + text.length - prefix.length;
     changed();
   };
 
