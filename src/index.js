@@ -191,8 +191,8 @@ const Suggestible = forwardRef(({
     el.value =
       value.substring(0, start - prefix.length) +
       text +
-      value.substring(start + prefix.length)
-    el.selectionStart = el.selectionEnd = start + text.length
+      value.substring(start)
+    el.selectionStart = el.selectionEnd = start + text.length - prefix.length
 
     changed()
   }
