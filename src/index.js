@@ -66,6 +66,8 @@ const Suggestible = forwardRef(({
   )
 
   const focused = e => {
+    if (e.persist) e.persist()
+
     setTimeout(() => {
       textarea.current.focus()
       if (!isFocused) {

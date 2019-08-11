@@ -111,6 +111,7 @@ var Suggestible = (0, _react.forwardRef)(function (_ref, ref) {
   }, [trigger, minPrefix]);
 
   var focused = function focused(e) {
+    if (e.persist) e.persist();
     setTimeout(function () {
       textarea.current.focus();
 
